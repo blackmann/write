@@ -13,6 +13,7 @@ import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPl
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { HeadingNode, QuoteNode } from "@lexical/rich-text";
 import { useEffect, useState } from "react";
+import { ActiveBlockHighlightPlugin } from "~/lib/active-block-highlight-plugin";
 import { CodeHighlightPlugin } from "~/lib/code-highlight-plugin";
 import { ExitCodeBlockPlugin } from "~/lib/exit-code-block-plugin";
 
@@ -41,11 +42,11 @@ export function WritingCanvas() {
 		setMounted(true);
 	}, []);
 
-	if (!mounted) return <div className="min-h-screen py-16 px-4" aria-hidden />;
+	if (!mounted) return <div className="min-h-full py-16 px-4" aria-hidden />;
 
 	return (
 		<LexicalComposer initialConfig={editorConfig}>
-			<div className="relative min-h-screen py-16 px-4">
+			<div className="relative min-h-full py-16 px-4">
 				<RichTextPlugin
 					contentEditable={
 						<ContentEditable
@@ -54,7 +55,7 @@ export function WritingCanvas() {
 						/>
 					}
 					placeholder={
-						<div className="editor-placeholder">Start writing...</div>
+						<div className="editor-placeholder mt-1">Start writing...</div>
 					}
 					ErrorBoundary={LexicalErrorBoundary}
 				/>
@@ -64,6 +65,7 @@ export function WritingCanvas() {
 				<LinkPlugin />
 				<CodeHighlightPlugin />
 				<ExitCodeBlockPlugin />
+				<ActiveBlockHighlightPlugin />
 				<MarkdownShortcutPlugin transformers={TRANSFORMERS} />
 			</div>
 		</LexicalComposer>

@@ -7,8 +7,8 @@ export function meta() {
 }
 
 export default function Home() {
-	return <div className="grid grid-cols-8">
-		<div className="col-span-4 col-start-3">
+	return <div className="grid grid-cols-8 h-screen">
+		<div className="col-span-4 col-start-3 h-full overflow-y-auto">
 			<WritingCanvas />
 		</div>
 	</div>;
