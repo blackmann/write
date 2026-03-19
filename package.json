@@ -1,29 +1,42 @@
 {
-  "name": "write",
-  "private": true,
+  "name": "@blackmann/write",
   "type": "module",
+  "bin": {
+    "write": "./bin/write.js"
+  },
+  "files": [
+    "bin",
+    "build"
+  ],
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
-    "start": "react-router-serve ./build/server/index.js",
+    "start": "node build/server/index.js",
+    "start:cli": "node bin/write.js",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
+    "@hono/node-server": "^1.19.11",
     "@react-router/node": "7.12.0",
     "@react-router/serve": "7.12.0",
+    "hono": "^4.12.8",
     "isbot": "^5.1.31",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-router": "7.12.0"
+    "react-router": "7.12.0",
+    "react-router-hono-server": "^2.25.2"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.8",
+    "@iconify-json/solar": "^1.2.5",
     "@react-router/dev": "7.12.0",
     "@tailwindcss/vite": "^4.1.13",
     "@types/node": "^22",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "tailwindcss": "^4.1.13",
+    "@unocss/preset-icons": "^66.6.7",
     "typescript": "^5.9.2",
+    "unocss": "^66.6.7",
     "vite": "^7.1.7",
     "vite-tsconfig-paths": "^5.1.4"
   }
