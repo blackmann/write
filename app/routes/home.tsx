@@ -1,3 +1,5 @@
+import { WritingCanvas } from "~/components/canvas";
+
 export function meta() {
 	return [
 		{ title: "Write" }
@@ -5,5 +7,9 @@ export function meta() {
 }
 
 export default function Home() {
-	return <div>Hello world</div>;
+	return <div className="grid grid-cols-8">
+		<div className="col-span-4 col-start-3">
+			<WritingCanvas />
+		</div>
+	</div>;
 }

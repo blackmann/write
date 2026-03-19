@@ -7,6 +7,6 @@ import {
 } from "unocss";
 
 export default defineConfig({
-	presets: [presetWind4(), presetIcons()],
+	presets: [presetWind4({ dark: "media" }), presetIcons()],
 	transformers: [transformerDirectives(), transformerVariantGroup()],
 });
