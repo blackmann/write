@@ -9,7 +9,7 @@ export function CodeHighlightPlugin() {
 
 	useEffect(() => {
 		const mq = window.matchMedia("(prefers-color-scheme: dark)");
-		const getTheme = () => (mq.matches ? "github-dark" : "github-light");
+		const getTheme = () => (mq.matches ? "one-dark-pro" : "snazzy-light");
 
 		const cleanup = registerCodeHighlighting(editor, {
 			...ShikiTokenizer,

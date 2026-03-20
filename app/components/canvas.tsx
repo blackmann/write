@@ -1,7 +1,7 @@
 import { CodeHighlightNode, CodeNode } from "@lexical/code";
 import { LinkNode } from "@lexical/link";
 import { ListItemNode, ListNode } from "@lexical/list";
-import { TRANSFORMERS } from "@lexical/markdown";
+import { $convertFromMarkdownString, TRANSFORMERS } from "@lexical/markdown";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
@@ -12,10 +12,22 @@ import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { HeadingNode, QuoteNode } from "@lexical/rich-text";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { useEffect, useState } from "react";
 import { ActiveBlockHighlightPlugin } from "~/lib/active-block-highlight-plugin";
 import { CodeHighlightPlugin } from "~/lib/code-highlight-plugin";
 import { ExitCodeBlockPlugin } from "~/lib/exit-code-block-plugin";
+
+function InitialContentPlugin({ markdown }: { markdown: string }) {
+	const [editor] = useLexicalComposerContext();
+	useEffect(() => {
+		editor.update(() => {
+			$convertFromMarkdownString(markdown, TRANSFORMERS);
+		});
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+	return null;
+}
 
 const editorConfig = {
 	namespace: "WritingCanvas",
@@ -35,7 +47,7 @@ const editorConfig = {
 	},
 };
 
-export function WritingCanvas() {
+export function WritingCanvas({ initialMarkdown }: { initialMarkdown?: string }) {
 	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
@@ -67,6 +79,7 @@ export function WritingCanvas() {
 				<ExitCodeBlockPlugin />
 				<ActiveBlockHighlightPlugin />
 				<MarkdownShortcutPlugin transformers={TRANSFORMERS} />
+				{initialMarkdown && <InitialContentPlugin markdown={initialMarkdown} />}
 			</div>
 		</LexicalComposer>
 	);

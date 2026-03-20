@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
+
 @font-face {
   font-family: "Maple Mono";
   src: url("/MapleMono-Medium.ttf.woff2") format("woff2");
@@ -20,7 +23,7 @@
 }
 
 :root {
-  font-family: "Styrene A", sans-serif;
+  font-family: "Karla", sans-serif;
   color-scheme: light dark;
   --font-mono: 'Maple Mono', monospace !important;
   @apply bg-stone-50 dark:bg-neutral-900;
